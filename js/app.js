@@ -158,30 +158,29 @@ const databaseRef = ref(getDatabase());
 
 // Función para renderizar los estudiantes en la tabla
 const renderStudents = (students) => {
-    const tbody = document.querySelector('tbody');
-    tbody.innerHTML = '';
+  const tbody = document.querySelector('tbody');
+  tbody.innerHTML = '';
 
-    countWithRif = 0;
-    countWithGPS = 0;
-    countWithCamera = 0;
+  countWithRif = 0;
+  countWithGPS = 0;
+  countWithCamera = 0;
 
-    Object.entries(students).forEach(([key, student]) => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td>${student.documento}</td>
-            <td>${student.nombre}</td>
-            <td>${student.diurnos}</td>
-            <td>${formatCurrency(student.ta)}</td>
-            <td>${student.nocturnos}</td>
-            <td>${formatCurrency(student.tadn)}</td>
-            <td>${formatCurrency(student.retroactivo)}</td>
-            <td>${formatCurrency(student.total)}</td>
-            <td>
-
-            </td>
-        `;
-         //                <button class="button is-warning is-dark is-small" data-key="${key}">E</button>
-                //<button class="button is-danger is-dark is-small" data-key="${key}">X</button>
+  Object.entries(students).forEach(([key, student]) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${student.documento}</td>
+      <td>${student.nombre}</td>
+      <td>${student.diurnos}</td>
+      <td>${formatCurrency(student.ta)}</td>
+      <td>${student.nocturnos}</td>
+      <td>${formatCurrency(student.tadn)}</td>
+      <td>${formatCurrency(student.retroactivo)}</td>
+      <td>${formatCurrency(student.total)}</td>
+      <td>
+        <button class="button is-warning is-dark is-small" data-key="${key}">E</button>
+        <button class="button is-danger is-dark is-small" data-key="${key}">X</button>
+      </td>
+    `;
         tbody.appendChild(tr);
 
         if (student.nombre === 'si') countWithRif++;
@@ -194,15 +193,18 @@ const renderStudents = (students) => {
     document.getElementById('camera-counter').innerText = `Con Cámara: ${countWithCamera}`;
 };
 
+
 // Función para filtrar por documento
 const filterStudentsByPlaca = (students, searchText) => {
-    const filteredStudents = {};
-    Object.entries(students).forEach(([key, student]) => {
-        if (student.documento.toLowerCase().includes(searchText.toLowerCase())) {
-            filteredStudents[key] = student;
-        }
-    });
-    return filteredStudents;
+  const filteredStudents = {};
+
+  Object.entries(students).forEach(([key, student]) => {
+    if (student.documento.toLowerCase().includes(searchText.toLowerCase())) {
+      filteredStudents[key] = student;
+    }
+  });
+
+  return filteredStudents;
 };
 
 // Función para obtener el snapshot de los estudiantes
@@ -229,13 +231,14 @@ const searchButton = document.getElementById('search-button');
 
 // Event listener para el botón de búsqueda
 searchButton.addEventListener('click', () => {
-    const searchText = searchInput.value.trim();
-    getStudentsSnapshot().then((students) => {
-        const filteredStudents = filterStudentsByPlaca(students, searchText);
-        renderStudents(filteredStudents);
-    }).catch((error) => {
-        console.error('Error al obtener estudiantes: ', error);
-    });
+  const searchText = searchInput.value.trim();
+
+  getStudentsSnapshot().then((students) => {
+    const filteredStudents = filterStudentsByPlaca(students, searchText);
+    renderStudents(filteredStudents);
+  }).catch((error) => {
+    console.error('Error al obtener estudiantes: ', error);
+  });
 });
 
 // Event listener para los botones de editar y eliminar
