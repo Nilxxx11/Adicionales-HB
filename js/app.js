@@ -210,19 +210,19 @@ const filterStudentsByPlaca = (students, searchText) => {
 // Función para obtener el snapshot de los estudiantes
 let studentsSnapshot;
 const getStudentsSnapshot = () => {
-    return new Promise((resolve, reject) => {
-        onValue(databaseRef, (snapshot) => {
-            const data = snapshot.val();
-            if (data) {
-                studentsSnapshot = data;
-                resolve(studentsSnapshot);
-            } else {
-                resolve({});
-            }
-        }, (error) => {
-            reject(error);
-        });
+  return new Promise((resolve, reject) => {
+    onValue(databaseRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        studentsSnapshot = data;
+        resolve(studentsSnapshot);
+      } else {
+        resolve({});
+      }
+    }, (error) => {
+      reject(error);
     });
+  });
 };
 
 // Obtener referencias a los elementos del DOM
@@ -233,31 +233,29 @@ const searchButton = document.getElementById('search-button');
 searchButton.addEventListener('click', () => {
   const searchText = searchInput.value.trim();
 
-  getStudentsSnapshot().then((students) => {
-    const filteredStudents = filterStudentsByPlaca(students, searchText);
-    renderStudents(filteredStudents);
-  }).catch((error) => {
-    console.error('Error al obtener estudiantes: ', error);
-  });
+  if (searchText) {
+    getStudentsSnapshot().then((students) => {
+      const filteredStudents = filterStudentsByPlaca(students, searchText);
+      renderStudents(filteredStudents);
+    }).catch((error) => {
+      console.error('Error al obtener estudiantes: ', error);
+    });
+  } else {
+    renderStudents({}); // Renderiza una tabla vacía
+  }
 });
 
 // Event listener para los botones de editar y eliminar
 document.querySelector('tbody').addEventListener('click', (e) => {
-    if (e.target.classList.contains('is-warning')) {
-        const key = e.target.dataset.key;
-        handleEditStudent(key);
-    } else if (e.target.classList.contains('is-danger')) {
-        const key = e.target.dataset.key;
-        handleDeleteStudent(key);
-    }
+  if (e.target.classList.contains('is-warning')) {
+    const key = e.target.dataset.key;
+    handleEditStudent(key);
+  } else if (e.target.classList.contains('is-danger')) {
+    const key = e.target.dataset.key;
+    handleDeleteStudent(key);
+  }
 });
 
-// Escuchar cambios en la base de datos
-getStudentsSnapshot().then((students) => {
-    renderStudents(students);
-}).catch((error) => {
-    console.error('Error al obtener estudiantes: ', error);
-});
 
 // Esperar a que se cargue el DOM
 document.addEventListener('DOMContentLoaded', () => {
