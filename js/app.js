@@ -177,11 +177,11 @@ const renderStudents = (students) => {
       <td>${formatCurrency(student.retroactivo)}</td>
       <td>${formatCurrency(student.total)}</td>
       <td>
-          <button class="button is-warning is-dark is-small" data-key="${key}">E</button>
-        <button class="button is-danger is-dark is-small" data-key="${key}">X</button>
+
       </td>
     `;
-
+//<button class="button is-warning is-dark is-small" data-key="${key}">E</button>
+        //<button class="button is-danger is-dark is-small" data-key="${key}">X</button>
         tbody.appendChild(tr);
 
         if (student.nombre === 'si') countWithRif++;
