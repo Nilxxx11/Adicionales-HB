@@ -194,11 +194,11 @@ const renderStudents = (students) => {
     document.getElementById('camera-counter').innerText = `Con Cámara: ${countWithCamera}`;
 };
 
-// Función para filtrar estudiantes por nombre
+// Función para filtrar por documento
 const filterStudentsByPlaca = (students, searchText) => {
     const filteredStudents = {};
     Object.entries(students).forEach(([key, student]) => {
-        if (student.nombre.toLowerCase().includes(searchText.toLowerCase())) {
+        if (student.documento.toLowerCase().includes(searchText.toLowerCase())) {
             filteredStudents[key] = student;
         }
     });
