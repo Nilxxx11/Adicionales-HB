@@ -8,13 +8,24 @@ const modal = document.getElementById('modal');
 const cancel = document.getElementById('cancel');
 const form = document.getElementById('register-form');
 
+
 let countWithRif = 0;
 let countWithGPS = 0;
 let countWithCamera = 0;
 
 // Variable global para almacenar la clave del registro que se está editando
 let editKey = null;
+const adminPassword = 'n7538';
+let isAdmin = false;
 
+const handleAdminModeButton = () => {
+  isAdmin = false; // Inicializar isAdmin en false
+  const enteredPassword = document.getElementById('admin-password').value;
+  if (enteredPassword === adminPassword) {
+    isAdmin = true;
+  }
+  renderStudents(studentsSnapshot);
+};
 // Función para mostrar modal
 const showRegisterModal = () => {
     form.reset();
@@ -161,6 +172,10 @@ const renderStudents = (students) => {
   const tbody = document.querySelector('tbody');
   tbody.innerHTML = '';
 
+  if (Object.keys(students).length === 0) {
+    return; // No hay datos para renderizar
+  }
+
   countWithRif = 0;
   countWithGPS = 0;
   countWithCamera = 0;
@@ -177,21 +192,23 @@ const renderStudents = (students) => {
       <td>${formatCurrency(student.retroactivo)}</td>
       <td>${formatCurrency(student.total)}</td>
       <td>
-
+        ${isAdmin ? `
+          <button class="button is-warning is-dark is-small" data-key="${key}">E</button>
+          <button class="button is-danger is-dark is-small" data-key="${key}">X</button>
+        ` : ''}
       </td>
     `;
-//<button class="button is-warning is-dark is-small" data-key="${key}">E</button>
-        //<button class="button is-danger is-dark is-small" data-key="${key}">X</button>
-        tbody.appendChild(tr);
 
-        if (student.nombre === 'si') countWithRif++;
-        if (student.diurnos === 'si') countWithGPS++;
-        if (student.ta === 'si') countWithCamera++;
-    });
+    tbody.appendChild(tr);
 
-    document.getElementById('rif-counter').innerText = `Con Rif: ${countWithRif}`;
-    document.getElementById('gps-counter').innerText = `Con GPS: ${countWithGPS}`;
-    document.getElementById('camera-counter').innerText = `Con Cámara: ${countWithCamera}`;
+    if (student.nombre === 'si') countWithRif++;
+    if (student.diurnos === 'si') countWithGPS++;
+    if (student.ta === 'si') countWithCamera++;
+  });
+
+  document.getElementById('rif-counter').innerText = `Con Rif: ${countWithRif}`;
+  document.getElementById('gps-counter').innerText = `Con GPS: ${countWithGPS}`;
+  document.getElementById('camera-counter').innerText = `Con Cámara: ${countWithCamera}`;
 };
 
 
@@ -258,6 +275,10 @@ document.querySelector('tbody').addEventListener('click', (e) => {
 });
 
 
+document.getElementById('admin-mode-btn').addEventListener('click', () => {
+  handleAdminModeButton();
+  renderStudents(studentsSnapshot);
+});
 // Esperar a que se cargue el DOM
 document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', handleFormSubmit);
