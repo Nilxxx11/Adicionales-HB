@@ -22,7 +22,7 @@
       <div class="crud-container">
         <div class="crud-header">
           <h1>ADICIONALES</h1>
-          <button class="button is-success is-dark is-small" id="nuevo"></button>
+
           <div class="field has-addons">
             <div class="control">
               <input class="input" type="text" placeholder="Buscar por documento" id="search-input">
@@ -69,6 +69,7 @@
         </div>
       </div>
       <h1>NOTA: LOS DATOS SERAN ACTUALIZADOS A PARTIR DEL 1 DE JUNIO</h1>
+                   <button class="button is-success is-dark is-small" id="nuevo"></button>   
     </main>
     <!-- Resto del código -->
   </body>
@@ -81,60 +82,15 @@
       </header>
       <section class="modal-card-body">
         <form id="register-form">
-          <div class="field">
-            <label class="label">Documento</label>
-            <div class="control">
-              <input class="input" type="text" name="documento">
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">Nombre</label>
-            <div class="control">
-              <input class="input" type="text" name="nombre">
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">Diurnos</label>
-            <div class="control">
-              <input class="input" type="text" name="diurnos">
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">T.A</label>
-            <div class="control">
-              <input class="input" type="text" name="ta">
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">Nocturnos</label>
-            <div class="control">
-              <input class="input" type="text" name="nocturnos">
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">T.ADN</label>
-            <div class="control">
-              <input class="input" type="text" name="tadn">
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">Retroactivos mes anterior</label>
-            <div class="control">
-              <input class="input" type="text" name="retroactivo">
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">Total</label>
-            <div class="control">
-              <input class="input" type="text" name="total">
-            </div>
-          </div>
+<div class="field">
+  <div class="control">
+    <input class="input" type="password" id="admin-password" placeholder="contraseña de administrador">
+  </div>
+</div>
+<button class="button is-primary" id="admin-mode-btn">Activar</button>
           </div>
       </section>
       <footer class="modal-card-foot">
-        <div class="buttons">
-          <button type="submit" class="button is-success">Guardar</button>
-        </div>
         </form>
         <button class="button" id="cancel">Cancelar</button>
       </footer>
