@@ -10,7 +10,7 @@
   --fondo: #000022;
   --texto: #fff;
   --tabla-fondo: #02005c; /* Color de fondo para la tabla */
-  --tabla-celda: #02005c; /* Color de fondo para las celdas */
+  --tabla-celda: #fbfcf4; /* Color de fondo para las celdas */
   --tabla-header: #0d0831; /* Color de fondo para los encabezados */
   --tabla-texto: #fff; /* Color del texto de la tabla */
 }
