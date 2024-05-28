@@ -53,7 +53,7 @@ window.consultarConductor = async function() {
   }
 
   const dbRef = ref(database);
-  const q = query(dbRef, orderByChild('documento'), equalTo(documentoConductor));
+  const q = query(dbRef, orderByChild('DOCUMENTO'), equalTo(documentoConductor));
 
   try {
     console.log("Realizando consulta para documento:", documentoConductor);
