@@ -26,25 +26,14 @@ document.getElementById('seccionButton1').addEventListener('click', function() {
 async function insertarDatosIniciales() {
   try {
     await push(ref(database), {
-      documento: "123456",
+      DOCUMENTO: "123456",
       CONDUCTOR: "John Doe",
-      Fecha: "2024-05-27",
-      Empresa: "HB Y CIA S.A.S",
-      Ruta: "Ruta 1",
-      Tipo: "Tipo 1",
-      Cantidad: 1,
-      Placa: "ABC123"
-    });
-
-    await push(ref(database), {
-      documento: "789012",
-      CONDUCTOR: "Jane Doe",
-      Fecha: "2024-05-28",
-      Empresa: "HB Y CIA S.A.S",
-      Ruta: "Ruta 2",
-      Tipo: "Tipo 2",
-      Cantidad: 2,
-      Placa: "XYZ789"
+      FECHA: "2024-05-27",
+      EMPRESA: "HB Y CIA S.A.S",
+      RUTA: "Ruta 1",
+      TIPO: "Tipo 1",
+      CANTIDAD: 1,
+      PLACA: "ABC123"
     });
 
     console.log("Datos iniciales insertados correctamente");
@@ -76,7 +65,7 @@ window.consultarConductor = async function() {
     if (snapshot.exists()) {
       snapshot.forEach((childSnapshot) => {
         const data = childSnapshot.val();
-        resultadosDiv.innerHTML += `<p>Fecha: ${data.Fecha}, Tipo: ${data.Tipo}, Cantidad: ${data.Cantidad}</p>`;
+        resultadosDiv.innerHTML += `<p>Fecha: ${data.FECHA}, Tipo: ${data.TIPO}, Cantidad: ${data.CANTIDAD}</p>`;
       });
     } else {
       resultadosDiv.innerHTML = '<p>No se encontraron datos para el documento especificado.</p>';
