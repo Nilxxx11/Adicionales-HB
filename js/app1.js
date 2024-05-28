@@ -71,7 +71,7 @@ window.consultarConductor = async function() {
     if (snapshot.exists()) {
       snapshot.forEach((childSnapshot) => {
         const data = childSnapshot.val();
-        resultadosDiv.innerHTML += `<p>Documento: ${data.documento}, Conductor: ${data.CONDUCTOR}, Fecha: ${data.Fecha}, Empresa: ${data.Empresa}, Ruta: ${data.Ruta}, Tipo: ${data.Tipo}, Cantidad: ${data.Cantidad}, Placa: ${data.Placa}</p>`;
+        resultadosDiv.innerHTML += `<p>Fecha: ${data.Fecha}, Tipo: ${data.Tipo}, Cantidad: ${data.Cantidad}</p>`;
       });
     } else {
       resultadosDiv.innerHTML = '<p>No se encontraron datos para el documento especificado.</p>';
