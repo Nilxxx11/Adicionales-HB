@@ -22,25 +22,6 @@ document.getElementById('seccionButton1').addEventListener('click', function() {
   window.location.href = 'index.html';
 });
 
-// Función para insertar datos iniciales
-async function insertarDatosIniciales() {
-  try {
-    await push(ref(database), {
-      DOCUMENTO: "123456",
-      CONDUCTOR: "John Doe",
-      FECHA: "2024-05-27",
-      EMPRESA: "HB Y CIA S.A.S",
-      RUTA: "Ruta 1",
-      TIPO: "Tipo 1",
-      CANTIDAD: 1,
-      PLACA: "ABC123"
-    });
-
-    console.log("Datos iniciales insertados correctamente");
-  } catch (error) {
-    console.error("Error al insertar datos iniciales:", error);
-  }
-}
 
 // ...
 
