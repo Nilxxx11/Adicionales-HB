@@ -17,6 +17,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
+//la otra seccion
+document.getElementById('seccionButton1').addEventListener('click', function() {
+  window.location.href = 'index.html';
+});
+
 // Función para insertar datos iniciales
 async function insertarDatosIniciales() {
   try {
