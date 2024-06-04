@@ -17,7 +17,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-//la otra seccion
+// la otra sección
 document.getElementById('seccionButton1').addEventListener('click', function() {
   window.location.href = 'index.html';
 });
@@ -43,11 +43,13 @@ window.consultarConductor = async function() {
     if (snapshot.exists()) {
       const aggregatedData = {};
 
-      // Agrupar y sumar los datos
+      // Agrupar y sumar los datos, omitiendo los de tipo 'RE'
       snapshot.forEach((childSnapshot) => {
         const data = childSnapshot.val();
+        if (data.TIPO === 'RE') return; // Omitir registros de tipo 'RE'
+
         const key = `${data.FECHA}-${data.TIPO}`;
-        const nombreConductor = data.CONDUCTOR;
+        const nombreConductor = data.NOMBRE;
 
         if (!aggregatedData[key]) {
           aggregatedData[key] = { nombre: nombreConductor, fecha: data.FECHA, tipo: data.TIPO, total: 0 };
