@@ -49,7 +49,7 @@ window.consultarConductor = async function() {
         if (data.TIPO === 'RE') return; // Omitir registros de tipo 'RE'
 
         const key = `${data.FECHA}-${data.TIPO}`;
-        const nombreConductor = data.NOMBRE;
+        const nombreConductor = data.CONDUCTOR;
 
         if (!aggregatedData[key]) {
           aggregatedData[key] = { nombre: nombreConductor, fecha: data.FECHA, tipo: data.TIPO, total: 0 };
