@@ -22,9 +22,6 @@ document.getElementById('seccionButton1').addEventListener('click', function() {
   window.location.href = 'index.html';
 });
 
-
-// ...
-
 // Función para consultar conductores por documento
 window.consultarConductor = async function() {
   const documentoConductor = document.getElementById('documentoConductor').value.trim();
@@ -44,10 +41,52 @@ window.consultarConductor = async function() {
     resultadosDiv.innerHTML = ''; // Limpiar resultados previos
 
     if (snapshot.exists()) {
+      const aggregatedData = {};
+
+      // Agrupar y sumar los datos
       snapshot.forEach((childSnapshot) => {
         const data = childSnapshot.val();
-        resultadosDiv.innerHTML += `<p>Fecha: ${data.FECHA}, Tipo: ${data.TIPO}, Cantidad: ${data.CANTIDAD}</p>`;
+        const key = `${data.FECHA}-${data.TIPO}`;
+        const nombreConductor = data.CONDUCTOR;
+
+        if (!aggregatedData[key]) {
+          aggregatedData[key] = { nombre: nombreConductor, fecha: data.FECHA, tipo: data.TIPO, total: 0 };
+        }
+        aggregatedData[key].total += data.CANTIDAD;
       });
+
+      // Generar la tabla
+      let tableHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Fecha</th>
+              <th>Tipo</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      for (const key in aggregatedData) {
+        const item = aggregatedData[key];
+        tableHTML += `
+          <tr>
+            <td>${item.nombre}</td>
+            <td>${item.fecha}</td>
+            <td>${item.tipo}</td>
+            <td>${item.total}</td>
+          </tr>
+        `;
+      }
+
+      tableHTML += `
+          </tbody>
+        </table>
+      `;
+
+      resultadosDiv.innerHTML = tableHTML;
     } else {
       resultadosDiv.innerHTML = '<p>No se encontraron datos para el documento especificado.</p>';
     }
@@ -56,9 +95,6 @@ window.consultarConductor = async function() {
     document.getElementById('resultados').innerText = 'Error al consultar los datos.';
   }
 };
-
-// ...
-
 
 // Insertar datos iniciales al cargar la página
 window.onload = insertarDatosIniciales;
