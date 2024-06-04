@@ -33,7 +33,7 @@
 .main-content {
   background-color: var(--fondo);
   color: var(--texto); 
-  height: 70vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
