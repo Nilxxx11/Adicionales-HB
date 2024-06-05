@@ -21,6 +21,9 @@ let isAdmin = false;
 document.getElementById('seccionButton').addEventListener('click', function() {
   window.location.href = 'detalles.html';
 });
+document.getElementById('inicio').addEventListener('click', function() {
+  window.location.href = 'index.html';
+});
 
 const handleAdminModeButton = () => {
   isAdmin = false; // Inicializar isAdmin en false
