@@ -18,8 +18,14 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 // la otra sección
-document.getElementById('inicio').addEventListener('click', function() {
+document.getElementById('seccionButton').addEventListener('click', function() {
+  window.location.href = 'detalles.html';
+});
+document.getElementById('seccionButton1').addEventListener('click', function() {
   window.location.href = 'main.html';
+});
+document.getElementById('inicio').addEventListener('click', function() {
+  window.location.href = 'index.html';
 });
 
 // Función para consultar conductores por documento
