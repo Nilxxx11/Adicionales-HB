@@ -19,7 +19,7 @@ const database = getDatabase(app);
 
 // la otra sección
 document.getElementById('seccionButton1').addEventListener('click', function() {
-  window.location.href = 'index.html';
+  window.location.href = 'main.html';
 });
 
 // Función para consultar conductores por documento
