@@ -80,7 +80,7 @@ window.consultarConductor = async function() {
 
       // Generar la tabla
       let tableHTML = `
-        <table>
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
           <thead>
             <tr>
               <th>Nombre</th>
