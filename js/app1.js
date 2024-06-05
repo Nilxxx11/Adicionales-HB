@@ -21,6 +21,7 @@ const database = getDatabase(app);
 document.addEventListener("DOMContentLoaded", function() {
   const button1 = document.getElementById('seccionButton');
   const button2 = document.getElementById('seccionButton1');
+  const button3 = document.getElementById('inicio');
 
   if (button1 !== null && button2 !== null) {
     button1.addEventListener('click', function() {
@@ -30,6 +31,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     button2.addEventListener('click', function() {
       const destino = 'main.html';
+      window.location.replace(destino);
+    });
+    button3.addEventListener('click', function() {
+      const destino = 'index.html';
       window.location.replace(destino);
     });
   } else {
