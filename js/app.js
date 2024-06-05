@@ -17,16 +17,6 @@ let countWithCamera = 0;
 let editKey = null;
 const adminPassword = 'n7538';
 let isAdmin = false;
-//la otra seccion
-document.getElementById('seccionButton1').addEventListener('click', function() {
-  window.location.href = 'main.html';
-});
-document.getElementById('seccionButton').addEventListener('click', function() {
-  window.location.href = 'detalles.html';
-});
-document.getElementById('inicio').addEventListener('click', function() {
-  window.location.href = 'index.html';
-});
 
 const handleAdminModeButton = () => {
   isAdmin = false; // Inicializar isAdmin en false
