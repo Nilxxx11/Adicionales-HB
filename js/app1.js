@@ -21,7 +21,7 @@ const database = getDatabase(app);
 document.addEventListener("DOMContentLoaded", function() {
   const button1 = document.getElementById('seccionButton');
   const button2 = document.getElementById('seccionButton1');
-  const button3 = document.getElementById('inicio');
+  const button3 = document.getElementById('seccionButton2');
 
   if (button1 !== null && button2 !== null) {
     button1.addEventListener('click', function() {
