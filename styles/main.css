@@ -49,7 +49,7 @@
   margin-top: 90px;
 }
 
-.contadores {
+.opciones {
   display: flex;
   justify-content: center;
   gap: 10px; /* Ajusta el espacio entre los contadores según tus necesidades */
