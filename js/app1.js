@@ -18,9 +18,6 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 // la otra sección
-document.getElementById('inicio').addEventListener('click', function() {
-  window.location.href = 'index.html';
-});
 document.getElementById('seccionButton').addEventListener('click', function() {
   window.location.href = 'detalles.html';
 });
