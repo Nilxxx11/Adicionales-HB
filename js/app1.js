@@ -26,16 +26,16 @@ document.addEventListener("DOMContentLoaded", function() {
   if (button1 !== null && button2 !== null) {
     button1.addEventListener('click', function() {
       const destino = 'detalles.html';
-      window.location.replace(destino);
+      window.location.href(destino);
     });
 
     button2.addEventListener('click', function() {
       const destino = 'main.html';
-      window.location.replace(destino);
+      window.location.href(destino);
     });
     button3.addEventListener('click', function() {
       const destino = 'index.html';
-      window.location.replace(destino);
+      window.location.href(destino);
     });
   } else {
     console.log("Error: Uno o ambos botones no existen en el DOM.");
