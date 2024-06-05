@@ -18,11 +18,17 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 // la otra sección
-document.getElementById('seccionButton').addEventListener('click', function() {
-  window.location.href = 'detalles.html';
+const button1 = document.getElementById('seccionButton');
+const button2 = document.getElementById('seccionButton1');
+
+button1.addEventListener('click', function() {
+  const destination = 'detalles.html';
+  window.location.replace(destination);
 });
-document.getElementById('seccionButton1').addEventListener('click', function() {
-  window.location.href = 'main.html';
+
+button2.addEventListener('click', function() {
+  const destination = 'main.html';
+  window.location.replace(destination);
 });
 
 
