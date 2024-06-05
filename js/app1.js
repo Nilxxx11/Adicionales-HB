@@ -18,7 +18,7 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 // la otra sección
-document.getElementById('seccionButton1').addEventListener('click', function() {
+document.getElementById('inicio').addEventListener('click', function() {
   window.location.href = 'main.html';
 });
 
@@ -97,6 +97,3 @@ window.consultarConductor = async function() {
     document.getElementById('resultados').innerText = 'Error al consultar los datos.';
   }
 };
-
-// Insertar datos iniciales al cargar la página
-window.onload = insertarDatosIniciales;
