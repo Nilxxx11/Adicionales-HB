@@ -9,11 +9,11 @@
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 10px;
       background: linear-gradient(45deg, #3494E6, #2196F3, #4DB6AC);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
@@ -22,6 +22,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: 20px;
     }
 
     @keyframes gradientBG {
@@ -30,10 +31,28 @@
       100% { background-position: 0% 50%; }
     }
 
-    h1 {
-      text-align: center;
-      font-size: 1.5em;
+    .logo {
+      width: 150px;
       margin-bottom: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .car {
+      width: 100px;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      animation: drive 10s linear infinite;
+    }
+
+    @keyframes drive {
+      0% { transform: translateX(-100vw); }
+      100% { transform: translateX(100vw); }
     }
 
     .input-container {
@@ -45,12 +64,22 @@
       margin-bottom: 20px;
     }
 
+    #buscarBtn {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      transition: transform 0.2s;
+    }
+
+    #buscarBtn:hover {
+      transform: scale(1.05);
+    }
+
     input, button {
       width: 100%;
       margin: 5px 0;
       padding: 10px;
       border-radius: 5px;
-      border: 1px solid rgba(255,255,255,0.3);
     }
 
     table {
@@ -63,75 +92,32 @@
       max-width: 100%;
     }
 
-    thead {
-      display: none;
-    }
-
-    tr {
-      display: block;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      background-color: rgba(255,255,255,0.1);
-    }
-
-    td {
-      display: block;
-      text-align: right;
-      padding: 8px;
-      position: relative;
-    }
-
-    td:before {
-      content: attr(data-label);
-      float: left;
-      font-weight: bold;
-    }
-
     @media screen and (min-width: 600px) {
-      thead {
-        display: table-header-group;
-      }
-      
-      tr {
-        display: table-row;
-        background-color: transparent;
-      }
-
-      td {
-        display: table-cell;
-        text-align: left;
-      }
-
-      td:before {
-        content: none;
-      }
+      thead { display: table-header-group; }
+      tr { display: table-row; }
+      td { display: table-cell; }
     }
   </style>
 </head>
 <body>
-  <h1>ADICIONALES TOTALES</h1>
+  <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMTAwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjM0I5NEU2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGFsaWdubWVudC1iYXNlbGluZT0ibWlkZGxlIj5Mb2dvPC90ZXh0Pjwvc3ZnPg==" alt="Logo" class="logo">
+  
   <div class="input-container">
     <input type="number" id="documento" placeholder="Número de Documento">
     <button id="buscarBtn">Buscar</button>
     <input type="file" id="archivoCSV" accept=".csv">
     <button id="subirCSVBtn">Subir CSV</button>
   </div>
+
   <table>
     <thead>
       <tr>
-        <th>Nombre</th>
-        <th>Camioneta</th>
-        <th>Diurnos</th>
-        <th>Nocturnos</th>
-        <th>Retroactivo</th>
-        <th>TA</th>
-        <th>TAC</th>
-        <th>TADN</th>
-        <th>Total</th>
+        <th>Nombre</th><th>Camioneta</th><th>Diurnos</th>
+        <th>Nocturnos</th><th>Retroactivo</th><th>TA</th>
+        <th>TAC</th><th>TADN</th><th>Total</th>
       </tr>
     </thead>
     <tbody id="resultados">
-      <!-- Esta línea es para que sea móvil amigable -->
       <tr>
         <td data-label="Nombre">Ejemplo</td>
         <td data-label="Camioneta">-</td>
@@ -145,6 +131,9 @@
       </tr>
     </tbody>
   </table>
+
+  <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iNTAiPjxwYXRoIGQ9Ik0xMCw0MCBRMzAsNDAgMzAsMjAgQzMwLDUgNTAsNSA2MCwyMCBDNzAsMzUgOTAsMzUgMTAwLDIwIiBmaWxsPSJub25lIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMyIvPjxjaXJjbGUgY3g9IjIwIiBjeT0iNDAiIHI9IjUiIGZpbGw9IiNGRkZGRkYiLz48Y2lyY2xlIGN4PSI4MCIgY3k9IjQwIiByPSI1IiBmaWxsPSIjRkZGRkZGIi8+PC9zdmc+" alt="Car" class="car">
+
   <script type="module" src="script.js"></script>
 </body>
 </html>
