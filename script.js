@@ -42,7 +42,7 @@ subirCSVBtn.addEventListener("click", () => {
     const filas = contenido.split("\n"); // Separar el contenido en filas
 
     // Procesar las filas del CSV
-    const encabezado = filas[0].split(","); // Primera fila de encabezado
+    const encabezado = filas[0].split(";"); // Primera fila de encabezado
     const documentoIdx = encabezado.indexOf("documento"); // Índice de la columna "documento"
     const totalIdx = encabezado.indexOf("total"); // Índice de la columna "total"
 
