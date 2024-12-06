@@ -123,7 +123,7 @@ function mostrarResultados(data) {
   resultados.innerHTML = `
     <tr>
       <td>${data.nombre}</td>
-      
+      <td>${data.camioneta}</td>
       <td>${data.diurnos}</td>
       <td>${data.nocturnos}</td>
       
