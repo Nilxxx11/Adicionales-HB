@@ -10,7 +10,7 @@ const firebaseConfig = {
   storageBucket: "adicionales-3d645.appspot.com",
   messagingSenderId: "1072268348737",
   appId: "1:1072268348737:web:f6dbc542496a24a8d7a5c0",
-  //databaseURL: "https://adicionales-3d645-default-rtdb.firebaseio.com/"  // Asegúrate de incluir el URL de tu Realtime Database
+  databaseURL: "https://adicionales-3d645-default-rtdb.firebaseio.com/"  // Asegúrate de incluir el URL de tu Realtime Database
 };
 
 // Inicializar Firebase
