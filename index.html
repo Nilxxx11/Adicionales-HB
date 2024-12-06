@@ -84,12 +84,19 @@
 
     table {
       width: 100%;
-      border-collapse: collapse;
+      border-collapse: separate; /* Cambiado para no colapsar los bordes */
+      border-spacing: 10px; /* Separación entre celdas */
       background-color: rgba(255,255,255,0.2);
       border-radius: 10px;
       overflow-x: auto;
       display: block;
       max-width: 100%;
+    }
+
+    th, td {
+      padding: 15px; /* Añadir más espacio dentro de las celdas */
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.3); /* Añadir un borde sutil */
     }
 
     @media screen and (min-width: 600px) {
