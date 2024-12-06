@@ -123,13 +123,11 @@ function mostrarResultados(data) {
   resultados.innerHTML = `
     <tr>
       <td>${data.nombre}</td>
-      <td>${data.camioneta}</td>
+      
       <td>${data.diurnos}</td>
       <td>${data.nocturnos}</td>
-      <td>${data.retroactivo}</td>
-      <td>${data.ta}</td>
-      <td>${data.tac}</td>
-      <td>${data.tadn}</td>
+      
+      
       <td>${data.total}</td>
     </tr>
   `;
