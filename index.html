@@ -2,27 +2,121 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Consulta Firebase</title>
   <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"></script>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 10px;
+      background: linear-gradient(45deg, #3494E6, #2196F3, #4DB6AC);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.5em;
+      margin-bottom: 20px;
+    }
+
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 20px;
+    }
+
+    input, button {
+      width: 100%;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: rgba(255,255,255,0.2);
+      border-radius: 10px;
+      overflow-x: auto;
+      display: block;
+      max-width: 100%;
+    }
+
+    thead {
+      display: none;
+    }
+
+    tr {
+      display: block;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    td {
+      display: block;
+      text-align: right;
+      padding: 8px;
+      position: relative;
+    }
+
+    td:before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+    }
+
+    @media screen and (min-width: 600px) {
+      thead {
+        display: table-header-group;
+      }
+      
+      tr {
+        display: table-row;
+        background-color: transparent;
+      }
+
+      td {
+        display: table-cell;
+        text-align: left;
+      }
+
+      td:before {
+        content: none;
+      }
+    }
+  </style>
 </head>
 <body>
   <h1>ADICIONALES TOTALES</h1>
-  <div>
-    <label for="documento">Número de Documento:</label>
-    <input type="number" id="documento" placeholder="Ingrese el documento">
+  <div class="input-container">
+    <input type="number" id="documento" placeholder="Número de Documento">
     <button id="buscarBtn">Buscar</button>
-	<!-- Agregar un botón para enviar datos de prueba -->
-<!--<button id="enviarPruebaBtn">Enviar Ejemplo de Prueba</button> -->
-<!-- Agregar un campo de entrada para seleccionar un archivo CSV -->
-<input type="file" id="archivoCSV" accept=".csv">
-<button id="subirCSVBtn">Subir CSV</button>
-
+    <input type="file" id="archivoCSV" accept=".csv">
+    <button id="subirCSVBtn">Subir CSV</button>
   </div>
-
-  <table border="1">
+  <table>
     <thead>
       <tr>
         <th>Nombre</th>
@@ -36,7 +130,20 @@
         <th>Total</th>
       </tr>
     </thead>
-    <tbody id="resultados"></tbody>
+    <tbody id="resultados">
+      <!-- Esta línea es para que sea móvil amigable -->
+      <tr>
+        <td data-label="Nombre">Ejemplo</td>
+        <td data-label="Camioneta">-</td>
+        <td data-label="Diurnos">-</td>
+        <td data-label="Nocturnos">-</td>
+        <td data-label="Retroactivo">-</td>
+        <td data-label="TA">-</td>
+        <td data-label="TAC">-</td>
+        <td data-label="TADN">-</td>
+        <td data-label="Total">-</td>
+      </tr>
+    </tbody>
   </table>
   <script type="module" src="script.js"></script>
 </body>
