@@ -21,8 +21,6 @@ const buscarBtn = document.getElementById("buscarBtn");
 const documentoInput = document.getElementById("documento");
 const resultados = document.getElementById("resultados");
 // Elementos del CSV
-
-// Elementos del DOM
 const subirCSVBtn = document.getElementById("subirCSVBtn");
 const archivoCSVInput = document.getElementById("archivoCSV");
 
@@ -44,7 +42,7 @@ subirCSVBtn.addEventListener("click", () => {
     const filas = contenido.split("\n"); // Separar el contenido en filas
 
     // Procesar las filas del CSV
-    const encabezado = filas[0].split(","); // Primera fila de encabezado
+    const encabezado = filas[0].split(";"); // Primera fila de encabezado, separado por ";"
     const documentoIdx = encabezado.indexOf("documento"); // Índice de la columna "documento"
 
     if (documentoIdx === -1) {
@@ -56,7 +54,7 @@ subirCSVBtn.addEventListener("click", () => {
     filas.forEach((fila, index) => {
       if (index === 0 || !fila.trim()) return; // Saltar la fila de encabezado o filas vacías
 
-      const datos = fila.split(","); // Separar las columnas por coma
+      const datos = fila.split(";"); // Separar las columnas por ";"
 
       if (datos.length < encabezado.length) return; // Ignorar filas incompletas
 
@@ -65,13 +63,13 @@ subirCSVBtn.addEventListener("click", () => {
       const ejemploData = {
         nombre: datos[1], // Suponemos que el nombre está en la segunda columna
         camioneta: datos[2], // Camioneta en la tercera columna
-        diurnos: parseInt(datos[3], 10), // Diurnos en la cuarta columna
-        nocturnos: parseInt(datos[4], 10), // Nocturnos en la quinta columna
-        retroactivo: parseFloat(datos[5]), // Retroactivo en la sexta columna
-        ta: parseFloat(datos[6]), // TA en la séptima columna
-        tac: parseFloat(datos[7]), // TAC en la octava columna
-        tadn: parseFloat(datos[8]), // TADN en la novena columna
-        total: parseFloat(datos[9]) // Total en la décima columna
+        diurnos: parseFloat(datos[3].replace(",", ".")) || 0, // Convertir "0,5" a "0.5" y manejar valores vacíos como 0
+        nocturnos: parseFloat(datos[4].replace(",", ".")) || 0, // Igual para nocturnos
+        retroactivo: parseFloat(datos[5].replace(",", ".")) || 0, // Igual para retroactivo
+        ta: parseFloat(datos[6].replace(",", ".")) || 0, // Igual para TA
+        tac: parseFloat(datos[7].replace(",", ".")) || 0, // Igual para TAC
+        tadn: parseFloat(datos[8].replace(",", ".")) || 0, // Igual para TADN
+        total: parseFloat(datos[9].replace(",", ".")) || 0 // Igual para Total
       };
 
       // Subir los datos a Firebase bajo la clave del documento
