@@ -21,6 +21,8 @@ const buscarBtn = document.getElementById("buscarBtn");
 const documentoInput = document.getElementById("documento");
 const resultados = document.getElementById("resultados");
 // Elementos del CSV
+
+// Elementos del DOM
 const subirCSVBtn = document.getElementById("subirCSVBtn");
 const archivoCSVInput = document.getElementById("archivoCSV");
 
@@ -42,12 +44,11 @@ subirCSVBtn.addEventListener("click", () => {
     const filas = contenido.split("\n"); // Separar el contenido en filas
 
     // Procesar las filas del CSV
-    const encabezado = filas[0].split(";"); // Primera fila de encabezado
+    const encabezado = filas[0].split(","); // Primera fila de encabezado
     const documentoIdx = encabezado.indexOf("documento"); // Índice de la columna "documento"
-    const totalIdx = encabezado.indexOf("total"); // Índice de la columna "total"
 
-    if (documentoIdx === -1 || totalIdx === -1) {
-      alert('No se encontraron las columnas "documento" o "total" en el archivo CSV.');
+    if (documentoIdx === -1) {
+      alert('No se encontró la columna "documento" en el archivo CSV.');
       return;
     }
 
@@ -60,7 +61,6 @@ subirCSVBtn.addEventListener("click", () => {
       if (datos.length < encabezado.length) return; // Ignorar filas incompletas
 
       const documento = datos[documentoIdx]; // Obtener el valor de la columna "documento"
-      const total = parseFloat(datos[totalIdx]); // Obtener el valor de la columna "total"
 
       const ejemploData = {
         nombre: datos[1], // Suponemos que el nombre está en la segunda columna
@@ -71,7 +71,7 @@ subirCSVBtn.addEventListener("click", () => {
         ta: parseFloat(datos[6]), // TA en la séptima columna
         tac: parseFloat(datos[7]), // TAC en la octava columna
         tadn: parseFloat(datos[8]), // TADN en la novena columna
-        total: total // Usar el valor de la columna "total" del CSV
+        total: parseFloat(datos[9]) // Total en la décima columna
       };
 
       // Subir los datos a Firebase bajo la clave del documento
@@ -91,7 +91,6 @@ subirCSVBtn.addEventListener("click", () => {
   // Leer el archivo como texto
   reader.readAsText(archivo);
 });
-
 
 // Función para buscar y mostrar resultados
 buscarBtn.addEventListener("click", () => {
