@@ -20,6 +20,7 @@ const db = getDatabase(app);
 const buscarBtn = document.getElementById("buscarBtn");
 const documentoInput = document.getElementById("documento");
 const resultados = document.getElementById("resultados");
+// Elementos del CSV
 const subirCSVBtn = document.getElementById("subirCSVBtn");
 const archivoCSVInput = document.getElementById("archivoCSV");
 
@@ -42,22 +43,25 @@ subirCSVBtn.addEventListener("click", () => {
 
     // Procesar las filas del CSV
     const encabezado = filas[0].split(","); // Primera fila de encabezado
-    const documentoIdx = encabezado.indexOf("documento"); // Encontrar la columna "documento"
+    const documentoIdx = encabezado.indexOf("documento"); // Índice de la columna "documento"
+    const totalIdx = encabezado.indexOf("total"); // Índice de la columna "total"
 
-    if (documentoIdx === -1) {
-      alert('No se encontró la columna "documento" en el archivo CSV.');
+    if (documentoIdx === -1 || totalIdx === -1) {
+      alert('No se encontraron las columnas "documento" o "total" en el archivo CSV.');
       return;
     }
 
     // Procesar cada fila del CSV
     filas.forEach((fila, index) => {
-      if (index === 0) return; // Saltar la primera fila de encabezado
+      if (index === 0 || !fila.trim()) return; // Saltar la fila de encabezado o filas vacías
 
       const datos = fila.split(","); // Separar las columnas por coma
 
-      if (datos.length < encabezado.length) return; // Si la fila no tiene suficientes columnas, ignorar la fila
+      if (datos.length < encabezado.length) return; // Ignorar filas incompletas
 
-      const documento = datos[documentoIdx]; // Obtener el valor del documento desde la columna
+      const documento = datos[documentoIdx]; // Obtener el valor de la columna "documento"
+      const total = parseFloat(datos[totalIdx]); // Obtener el valor de la columna "total"
+
       const ejemploData = {
         nombre: datos[1], // Suponemos que el nombre está en la segunda columna
         camioneta: datos[2], // Camioneta en la tercera columna
@@ -67,7 +71,7 @@ subirCSVBtn.addEventListener("click", () => {
         ta: parseFloat(datos[6]), // TA en la séptima columna
         tac: parseFloat(datos[7]), // TAC en la octava columna
         tadn: parseFloat(datos[8]), // TADN en la novena columna
-        total: parseFloat(datos[5]) + parseFloat(datos[6]) + parseFloat(datos[7]) + parseFloat(datos[8]) // Calcular el total
+        total: total // Usar el valor de la columna "total" del CSV
       };
 
       // Subir los datos a Firebase bajo la clave del documento
