@@ -1,39 +1,43 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
-    <title>HB Y CIA S.A.S</title>
-    <script>
-      // Código JavaScript
-      alert("SOLO CONSULTAR ADICIONALES TOTALES");
-    </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5660832239159462"
-     crossorigin="anonymous"></script>
-    <script type="module" src="js/app1.js"></script>
-  </head>
-  <body>
-    <section class="section">
-      <div class="container">
-        <div class="columns is-centered">
-          <div class="column is-half">
-            <div class="imagen is-centered">
-  <img src="hb.png" alt="Descripción de la imagen" class="is-256x256">
-</div>
-            <div class="contadores has-text-centered">
-              <h1 class="title is-1"></h1>
-            </div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulta Firebase</title>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Consulta por Documento</h1>
+  <div>
+    <label for="documento">Número de Documento:</label>
+    <input type="number" id="documento" placeholder="Ingrese el documento">
+    <button id="buscarBtn">Buscar</button>
+	<!-- Agregar un botón para enviar datos de prueba -->
+<!--<button id="enviarPruebaBtn">Enviar Ejemplo de Prueba</button> -->
+<!-- Agregar un campo de entrada para seleccionar un archivo CSV -->
+<input type="file" id="archivoCSV" accept=".csv">
+<button id="subirCSVBtn">Subir CSV</button>
 
-            <div class="opciones">
-              <div class="buttons is-centered">
-               <a href="main.html" class="button is-primary">Ir</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </body>
+  </div>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Camioneta</th>
+        <th>Diurnos</th>
+        <th>Nocturnos</th>
+        <th>Retroactivo</th>
+        <th>TA</th>
+        <th>TAC</th>
+        <th>TADN</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody id="resultados"></tbody>
+  </table>
+  <script type="module" src="script.js"></script>
+</body>
 </html>
-
