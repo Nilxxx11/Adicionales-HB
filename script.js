@@ -128,7 +128,7 @@ function mostrarResultados(data) {
       <td>${data.nocturnos}</td>
       
       
-      <td>${data.total}</td>
+      <td>$${data.total}</td>
     </tr>
   `;
 }
