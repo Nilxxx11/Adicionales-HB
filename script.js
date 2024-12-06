@@ -67,8 +67,8 @@ subirCSVBtn.addEventListener("click", () => {
         nocturnos: parseFloat(datos[4].replace(",", ".")) || 0, // Igual para nocturnos
         retroactivo: parseFloat(datos[5].replace(",", ".")) || 0, // Igual para retroactivo
         ta: parseFloat(datos[6].replace(",", ".")) || 0, // Igual para TA
-        tac: parseFloat(datos[7].replace(",", ".")) || 0, // Igual para TAC
-        tadn: parseFloat(datos[8].replace(",", ".")) || 0, // Igual para TADN
+        tadn: parseFloat(datos[7].replace(",", ".")) || 0, // Igual para TADN
+        tac: parseFloat(datos[8].replace(",", ".")) || 0, // Igual para TAC
         total: parseFloat(datos[9].replace(",", ".")) || 0 // Igual para Total
       };
 
