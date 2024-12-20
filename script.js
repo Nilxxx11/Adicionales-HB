@@ -117,7 +117,7 @@ buscarBtn.addEventListener("click", () => {
       console.error("Error al consultar la base de datos:", error);
     });
 });
-
+alert("ACTUALIZADO HASTA EL 16 DE DICIEMBRE")
 // Función para mostrar los resultados en la tabla
 function mostrarResultados(data) {
   resultados.innerHTML = `
