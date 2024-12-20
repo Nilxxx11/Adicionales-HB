@@ -65,7 +65,7 @@ subirCSVBtn.addEventListener("click", () => {
         camioneta: datos[2], // Camioneta en la tercera columna
         diurnos: parseFloat(datos[3].replace(",", ".")) || 0, // Convertir "0,5" a "0.5" y manejar valores vacíos como 0
         nocturnos: parseFloat(datos[4].replace(",", ".")) || 0, // Igual para nocturnos
-        Ocasional: parseFloat(datos[5].replace(",", ".")) || 0, // Igual para Ocasional
+        Ocasionales: parseFloat(datos[5].replace(",", ".")) || 0, // Igual para Ocasional
         ta: parseFloat(datos[6].replace(",", ".")) || 0, // Igual para TA
         tadn: parseFloat(datos[7].replace(",", ".")) || 0, // Igual para TADN
         tac: parseFloat(datos[8].replace(",", ".")) || 0, // Igual para TAC
@@ -126,7 +126,7 @@ function mostrarResultados(data) {
       <td>${data.camioneta}</td>
       <td>${data.diurnos}</td>
       <td>${data.nocturnos}</td>
-      
+      <td>${data.Ocasionales}</td>
       
       <td>$${data.total}</td>
     </tr>
