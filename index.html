@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ADICIONALES HB Y CIA S.A.S</title>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(45deg, #3494E6, #2196F3, #4DB6AC);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .logo {
+      width: 150px;
+      margin-bottom: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .car {
+      width: 200px;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      animation: drive 10s linear infinite;
+    }
+
+    @keyframes drive {
+      0% { transform: translateX(-100vw); }
+      100% { transform: translateX(100vw); }
+    }
+
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 20px;
+    }
+
+    #buscarBtn {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      transition: transform 0.2s;
+    }
+
+    #buscarBtn:hover {
+      transform: scale(1.05);
+    }
+
+    input, button {
+      width: 100%;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate; /* Cambiado para no colapsar los bordes */
+      border-spacing: 10px; /* Separación entre celdas */
+      background-color: rgba(255,255,255,0.2);
+      border-radius: 10px;
+      overflow-x: auto;
+      display: block;
+      max-width: 100%;
+    }
+
+    th, td {
+      padding: 15px; /* Añadir más espacio dentro de las celdas */
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.3); /* Añadir un borde sutil */
+    }
+
+    @media screen and (min-width: 600px) {
+      thead { display: table-header-group; }
+      tr { display: table-row; }
+      td { display: table-cell; }
+    }
+  </style>
+</head>
+<body>
+  <img src="hb.png" alt="Logo" class="logo">
+  
+  <div class="input-container">
+    <input type="number" id="documento" placeholder="Número de Documento">
+    <button id="buscarBtn">Buscar</button>
+    <input type="file" id="archivoCSV" accept=".csv">
+    <button id="subirCSVBtn">Subir CSV</button>
+    
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th><th>Camioneta</th><th>Adicionales Diurnos</th>
+        <th>Adicionales Nocturnos</th><th>Ocasionales</th><th>Total a pagar</th>
+      </tr>
+    </thead>
+    <tbody id="resultados">
+      <tr>
+        <td data-label="Nombre">-</td>
+        <td data-label="Camioneta">-</td>
+        <td data-label="Diurnos">-</td>
+        <td data-label="Nocturnos">-</td>
+        <td data-label="Ocasionales">-</td>
+        <td data-label="Total">-</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <img src="camioneta.png" alt="Car" class="car">
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
